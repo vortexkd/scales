@@ -1,0 +1,15 @@
+<div class='article' id='article_$i'>
+	<div>
+		<h1 class='article-header' style='font-size:14px;font-weight:bold;'> <!-- $title -->  </h1>
+	</div>
+	<div class='article-body' style='font-size:12px;'>
+		<div class='img-wrapper' style='float:right;'>
+			<img src='$IMAGE_URL' height='50' width = '50' />
+		</div>
+		<!-- $articleBody --> 
+		<p>
+			<a href='$url' style='font-size:10px;'>Read more</a>
+		</p>
+		
+	</div>
+</div>
