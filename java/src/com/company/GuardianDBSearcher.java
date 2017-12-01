@@ -4,11 +4,11 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class GuardianDBSearcher extends DBsearcher {
+class GuardianDBSearcher extends DBsearcher {
     private static final String DB = System.getProperty("user.dir") + "/databases/" + "guardian.csv";
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
 
-    public GuardianDBSearcher() throws ParseException {
+    GuardianDBSearcher() throws ParseException {
         super(DB, DATE_FORMAT);
     }
 
@@ -51,8 +51,8 @@ public class GuardianDBSearcher extends DBsearcher {
         String articleDiv = output.toString();
 
         articleDiv = articleDiv.replace(idPlaceholder, String.valueOf(super.getDatabaseArticles().indexOf(article)));
-        articleDiv = articleDiv.replace(titlePlaceholder,article.getHeadline().replaceAll("'|\"","&#39;"));
-        articleDiv = articleDiv.replace(bodyPlaceHolder,article.getDescription().replaceAll("'|\"","&#39;"));
+        articleDiv = articleDiv.replace(titlePlaceholder,article.getHeadline().replaceAll("['\"]","&#39;"));
+        articleDiv = articleDiv.replace(bodyPlaceHolder,article.getDescription().replaceAll("['\"]","&#39;"));
         articleDiv = articleDiv.replace(urlPlaceHolder,article.getUrl());
 
 

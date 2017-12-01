@@ -4,12 +4,13 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class SnopesDBsearcher extends DBsearcher {
+class SnopesDBsearcher extends DBsearcher {
     private static final String DB = System.getProperty("user.dir")+"/databases/" + "snopes.csv";
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
-    private static final String IMG_LOCATION = System.getProperty("user.dir") + "/snopes_images/";
+    private static final String IMG_LOCATION = "http://localhost/scales/java/Scales/snopes_images/det-" ;
+    private static final String TYPE_GIF = ".gif";
 
-    public SnopesDBsearcher() throws ParseException {
+    SnopesDBsearcher() throws ParseException {
         super(DB, DATE_FORMAT);
     }
 
@@ -57,8 +58,8 @@ public class SnopesDBsearcher extends DBsearcher {
         String[] descAndVerdict = article.getSplitDescription();
 
         articleDiv = articleDiv.replace(idPlaceholder, String.valueOf(super.getDatabaseArticles().indexOf(article)));
-        articleDiv = articleDiv.replace(titlePlaceholder,article.getHeadline().replaceAll("'|\"","&#39;"));
-        articleDiv = articleDiv.replace(bodyPlaceHolder,article.getDescription().replaceAll("'|\"","&#39;"));
+        articleDiv = articleDiv.replace(titlePlaceholder,article.getHeadline().replaceAll("['\"]","&#39;"));
+        articleDiv = articleDiv.replace(bodyPlaceHolder,article.getDescription().replaceAll("['\"]","&#39;"));
         articleDiv = articleDiv.replace(urlPlaceHolder,article.getUrl());
 
         if(descAndVerdict[1] != null) {
@@ -69,7 +70,7 @@ public class SnopesDBsearcher extends DBsearcher {
     }
 
     private String getVerdictImgPath(String verdict) {
-        String path = "http://localhost/scales/java/Scales/snopes_images/det-" + verdict.toLowerCase().replaceAll(" ","") + ".gif";
+        String path = IMG_LOCATION + verdict.toLowerCase().replaceAll(" ","") + TYPE_GIF;
         return path;
     }
 }

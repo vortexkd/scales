@@ -38,7 +38,7 @@ abstract class DBsearcher {
         }
     }
 
-    protected List<Article> getDatabaseArticles() {
+    List<Article> getDatabaseArticles() {
         return databaseArticles;
     }
 
